@@ -75,7 +75,7 @@ class BlueScreen extends Nette\Object
 
 		$start = max(1, $line - floor($lines * 2/3));
 
-		$source = is_file($file) ? @file_get_contents($file) : $file; // intentionally @
+		$source = (strpos($file, "\n") === FALSE && is_file($file)) ? @file_get_contents($file) : $file; // intentionally @
 		if (!$source) {
 			return;
 		}
